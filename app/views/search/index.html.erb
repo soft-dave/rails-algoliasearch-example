@@ -1,0 +1,28 @@
+<% content_for :title do %>Backend-search<% end %>
+
+<h1>Backend-search example</h1>
+
+<div class="well">
+  A results page generated through your backend and based on <code>AlgoliaSearch Ruby Client</code> + <code>will_paginate</code>/<code>kaminari</code>.
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for Contact.new, url: '/backend-search', method: 'get' do |f| %>
+        <%= text_field :contact, :q, class: "form-control" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @hits %>
+  <h2>Results</h2>
+  <% @hits.each do |hit| %>
+    <div class="hit">
+      <%= debug hit %>
+    </div>
+  <% end %>
+  <%#= will_paginate @hits %>
+  <%#= paginate @hits  %>
+<% end %>
